@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<style>
+body {
+	background-image: url("https://images.pexels.com/photos/433267/pexels-photo-433267.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")
+
+</style>
+
+</head>
+
+<body>
+
+</body>
+</html>
+
+{% extends "material/base.html" %}
+{% block content %}
+<div class="showcase container blue lighten-3">
+    <div class="row">
+        <div class="col 12 m10 offset-ml center">
+            <h2><font color="black">Heart Times</font color> </h2>
+            <p><h5>Hear you Heart. Heart your Health</h5></p>
+            
+            
+        </div>
+
+    </div>
+</div>
+
+
+<section class="section section-signup">
+        <div class="container">
+          <div class="row">
+           
+            <div class="col s12 m4">
+              <body>This is an application Predicting whether or not you will get a heart disease in future, Happy health.  </body>
+              <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-10">
+                <form action="{{ url_for('analyze')}}" method="POST">
+                  
+                  <div class="input-field">
+                   <p class="range-field">
+                        <input type="number" name="sex">
+                    <label for="sex">sex[0-female,1-male]</label>
+                    
+                  </div>
+                   <div class="input-field">
+                   <p class="range-field">
+                        <input type="number" name="age"> 
+                    <label for="age">Age[1,80]</label>
+                  </div>
+                   <div class="input-field">
+                   <p class="range-field">
+                        <input type="number" name="oldpeak" >
+                    <label for="Old Peak">Old Peak[0,3]</label>
+                  </div>
+                  <div class="input-field">
+                   <p class="range-field">
+                        <input type="number" name="cp" >
+                    <label for="cp">cp (Type of chest pain[1,2,3])</label>
+                  </div>
+		<div class="input-field">
+                   <p class="range-field">
+                        <input type="number" name="ca" > 
+                    <label for="ca">ca number of major vessels (0-3) colored by flourosopy</label>
+                  </div>
+                  
+                   
+                  <input type="submit" value="Predict" >
+                  <input type="reset" value="Clear">
+                </form>
+                
+              </div>
+                
+            </div>
+            
+             <div class="col s12 m4 offers">
+                     <div class="card-panel green lighten-4 grey-text text-darken-4 z-depth-0">
+                         
+                                <p>sex: {{ sex }}</p>
+            			<p>age: {{ age }}</p>
+            			<p>oldpeak: {{ oldpeak}} </p>
+            			<p>cp: {{ cp }}</p>
+				<p>ca: {{ ca }}</p>
+        
+            </div>
+        
+        
+                
+			<a href="{{url_for('index')}}" class="btn btn-small green	 white-text waves-effect waves-dark">Reset</a>
+      
+                     </div>
+                     
+                        
+    
+            
+    
+<div class="col s12 m4 offers">
+                <h5>Prediction</h5>
+                  <h7>0->Healthy heart</h7><br>
+                  <h7>1->Time to see your doctor</h7>
+                  <div class="collection" role="alert">
+                    <p  class="collection-item active red">Predicted result {{ result_prediction }} </p>
+                </div>       				
+                <div class="card-image waves-effect waves-block waves-light">
+                 </div>
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      {% endblock%}
+
+      {% block scripts %}
+      {{super()}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <!-- Compiled and minified JavaScript -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      <!-- <script type="text/javascript">
+           document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+        });
+      </script> -->
+      
+      <script>
+          // Or with jQuery
+      
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+      </script>
+      
+      {% endblock %}
